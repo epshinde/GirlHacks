@@ -1,48 +1,64 @@
 /* src/components/Home.css */
-body {
-    background-color: #ffcccb; /* Pastel pink */
-    font-family: 'Rubik', sans-serif; /* Set Rubik font */
+
+.home-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Rubik', sans-serif;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.center {
+.home-page h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.home-page form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Full height */
 }
 
-h1 {
-    color: #333; /* Darker color for header */
-    margin-bottom: 20px; /* Space below header */
+.home-page label {
+    margin: 10px 0 5px;
+    font-weight: 500;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between buttons */
+.home-page select, 
+.home-page textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 15px;
 }
 
-.stButton {
-    background-color: #ffb3b3; /* Button background color */
-    color: #fff; /* White text */
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 8px;
+.home-page select:focus,
+.home-page textarea:focus {
+    border-color: #007bff;
+}
+
+.home-page textarea {
+    min-height: 100px;
+    resize: none;
+}
+
+.home-page button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s ease; /* Smooth transition */
+    margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
-.stButton:hover {
-    background-color: #ff9999; /* Lighter pink on hover */
-    color: #fff; /* Keep text white */
-}
-
-.button-img {
-    margin-right: 10px; /* Space between image and text */
-    width: 30px; /* Adjust the size of the images */
-    height: 30px;
+.home-page button:hover {
+    background-color: #0056b3;
 }

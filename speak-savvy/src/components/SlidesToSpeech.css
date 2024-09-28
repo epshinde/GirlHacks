@@ -1,0 +1,40 @@
+/* src/components/SlidesToSpeech.css */
+.slides-to-speech-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    font-family: 'Rubik', sans-serif;
+}
+
+.file-upload-section {
+    margin: 20px 0;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    display: block;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #5762D5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #6E7DAB;
+}
+
+.actions {
+    margin-top: 20px;
+    text-align: center;
+}

@@ -1,20 +1,23 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
-import AiGoals from './components/AiGoals';
-import UploadPage from './components/UploadPage'; // Import your new UploadPage component
-import RealCoach from './components/RealCoach';
-import './App.css';
+import SelectCoach from './components/SelectCoach';
+import AICoach from './components/AICoach';
+import SpeechAnalysis from './components/SpeechAnalysis';
+import SlidesToSpeech from './components/SlidesToSpeech';
+import ProfessionalCoach from './components/ProfessionalCoach';
 
 const App = () => {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/ai" element={<AiGoals />} />
-                <Route path="/upload" element={<UploadPage />} /> {/* Ensure this route is included */}
-                <Route path="/real-coach" element={<RealCoach />} />
+                <Route path="/select-coach" element={<SelectCoach />} />
+                <Route path="/ai-coach" element={<AICoach />} />
+                <Route path="/speech-analysis" element={<SpeechAnalysis />} />
+                <Route path="/slides-to-speech" element={<SlidesToSpeech />} />
+                <Route path="/professional-coach" element={<ProfessionalCoach />} />
             </Routes>
         </Router>
     );

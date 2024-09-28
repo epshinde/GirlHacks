@@ -1,0 +1,40 @@
+/* src/components/SpeechAnalysis.css */
+.speech-analysis-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    font-family: 'Rubik', sans-serif;
+}
+
+.file-upload-section, .audio-record-section {
+    margin: 20px 0;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    display: block;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ffa5ae;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #ffb4bb;
+}
+
+.actions {
+    margin-top: 20px;
+    text-align: center;
+}

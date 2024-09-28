@@ -1,0 +1,54 @@
+/* src/components/ProfessionalCoach.css */
+
+.professional-coach-container {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background color */
+    min-height: 100vh; /* Ensure it takes up full height */
+}
+
+.coaches-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between coach cards */
+}
+
+.coach-card {
+    border: 1px solid #ddd; /* Light border around cards */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px;
+    background-color: #fff; /* White background for cards */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.coach-card h2 {
+    margin: 0 0 10px; /* Margin for coach name */
+    color: #333; /* Darker text color */
+}
+
+.coach-card p {
+    margin: 0 0 15px; /* Margin for email */
+    color: #555; /* Gray text color */
+}
+
+textarea {
+    width: 100%; /* Full width */
+    height: 100px; /* Fixed height */
+    padding: 10px; /* Padding inside the textarea */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    resize: none; /* Disable resizing */
+}
+
+button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for button */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
