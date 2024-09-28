@@ -1,10 +1,20 @@
 /* src/components/Home.css */
+body {
+    background-color: #ffcccb; /* Pastel pink */
+    font-family: 'Rubik', sans-serif; /* Set Rubik font */
+}
+
 .center {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100vh; /* Full height */
+}
+
+h1 {
+    color: #333; /* Darker color for header */
+    margin-bottom: 20px; /* Space below header */
 }
 
 .button-container {
@@ -14,8 +24,8 @@
 }
 
 .stButton {
-    background-color: #6E7DAB;
-    color: #D1E3DD;
+    background-color: #ffb3b3; /* Button background color */
+    color: #fff; /* White text */
     padding: 15px 30px;
     font-size: 18px;
     border-radius: 8px;
@@ -23,11 +33,12 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
 .stButton:hover {
-    background-color: #5762D5;
-    color: #FFFFFF;
+    background-color: #ff9999; /* Lighter pink on hover */
+    color: #fff; /* Keep text white */
 }
 
 .button-img {

@@ -1,49 +1,60 @@
 // src/components/AiGoals.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import BackButton from './BackButton'; // Import BackButton
 
 const AiGoals = () => {
-    const [goals, setGoals] = useState({
-        clarity: false,
-        engagement: false,
-        time: false,
-        confidence: false,
-    });
+    const navigate = useNavigate();
 
-    const handleChange = (event) => {
-        const { name, checked } = event.target;
-        setGoals({ ...goals, [name]: checked });
+    const handleGoalsConfirmation = () => {
+        navigate('/upload');
     };
 
     return (
-        <div className="center">
+        <div style={styles.container}>
             <h1>Set Your Presentation Goals</h1>
+            {/* Goals checkboxes */}
             <label>
-                <input type="checkbox" name="clarity" checked={goals.clarity} onChange={handleChange} />
-                Improve clarity of speech
+                <input type="checkbox" /> Improve clarity of speech
             </label>
             <label>
-                <input type="checkbox" name="engagement" checked={goals.engagement} onChange={handleChange} />
-                Increase audience engagement
+                <input type="checkbox" /> Increase audience engagement
             </label>
             <label>
-                <input type="checkbox" name="time" checked={goals.time} onChange={handleChange} />
-                Stay within time limits
+                <input type="checkbox" /> Stay within time limits
             </label>
             <label>
-                <input type="checkbox" name="confidence" checked={goals.confidence} onChange={handleChange} />
-                Boost presentation confidence
+                <input type="checkbox" /> Boost presentation confidence
             </label>
-            <div className="button-container">
-                <Link to="/">
-                    <button className="stButton">Back to Home</button>
-                </Link>
-                <Link to="/ai-analysis">
-                    <button className="stButton">Confirm Goals</button>
-                </Link>
-            </div>
+
+            <button onClick={handleGoalsConfirmation} style={styles.confirmButton}>
+                Confirm Goals
+            </button>
+
+            {/* Back Button */}
+            <BackButton to="/" />
         </div>
     );
+};
+
+const styles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '20px',
+    },
+    confirmButton: {
+        padding: '10px 20px',
+        backgroundColor: '#FF677D', // Pastel Red
+        color: '#fff',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        margin: '20px 0',
+        transition: 'background-color 0.3s ease',
+    }
 };
 
 export default AiGoals;
