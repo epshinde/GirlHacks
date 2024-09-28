@@ -25,7 +25,7 @@
     padding: 15px 30px;
     font-size: 1.2rem;
     color: #fff;
-    background-color: #007bff;
+    background-color: #fcafdb;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -33,5 +33,5 @@
 }
 
 .button-container button:hover {
-    background-color: #0056b3;
+    background-color: #fd89cb;
 }

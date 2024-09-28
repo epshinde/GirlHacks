@@ -5,7 +5,7 @@
     margin: 0 auto;
     padding: 20px;
     font-family: 'Rubik', sans-serif;
-    background-color: #f4f4f9;
+    background-color: #ffe4f5;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -26,6 +26,21 @@
     font-weight: 500;
 }
 
+/* Styles for individual form groups */
+.form-group-audience,
+.form-group-domain,
+.form-group-intent,
+.form-group-engagement,
+.form-group-goal {
+    width: 100%; /* Set to full width */
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.form-group-goal textarea {
+    width: 100%; /* Full width for the goal textarea */
+    min-height: 150px; /* Increased height for more space */
+}
+
 .home-page select, 
 .home-page textarea {
     padding: 10px;
@@ -33,7 +48,6 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
-    margin-bottom: 15px;
 }
 
 .home-page select:focus,
@@ -42,7 +56,7 @@
 }
 
 .home-page textarea {
-    min-height: 100px;
+    min-height: 100px; /* Default height for other textareas */
     resize: none;
 }
 
@@ -51,7 +65,7 @@
     font-size: 1rem;
     font-weight: bold;
     color: #fff;
-    background-color: #007bff;
+    background-color: #fcafdb;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -60,5 +74,5 @@
 }
 
 .home-page button:hover {
-    background-color: #0056b3;
+    background-color: #fd89cb;
 }

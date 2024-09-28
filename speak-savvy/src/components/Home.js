@@ -24,7 +24,7 @@ const Home = () => {
         <div className="home-page">
             <h1>Presentation Goals</h1>
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className="form-group-audience">
                     <label>Audience:</label>
                     <select value={audience} onChange={(e) => setAudience(e.target.value)} required>
                         <option value="">Select Audience</option>
@@ -34,7 +34,7 @@ const Home = () => {
                     </select>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group-domain">
                     <label>Domain:</label>
                     <select value={domain} onChange={(e) => setDomain(e.target.value)} required>
                         <option value="">Select Domain</option>
@@ -46,7 +46,7 @@ const Home = () => {
                     </select>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group-intent">
                     <label>Intent:</label>
                     <select value={intent} onChange={(e) => setIntent(e.target.value)} required>
                         <option value="">Select Intent</option>
@@ -57,7 +57,7 @@ const Home = () => {
                     </select>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group-engagement">
                     <label>Audience Engagement:</label>
                     <select value={engagement} onChange={(e) => setEngagement(e.target.value)} required>
                         <option value="">Select Engagement Level</option>
@@ -67,7 +67,7 @@ const Home = () => {
                     </select>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group-goal">
                     <label>What do you want to accomplish with your presentation?</label>
                     <textarea
                         value={goal}
