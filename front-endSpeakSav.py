@@ -56,9 +56,11 @@ def apply_custom_css():
 # Apply custom CSS
 apply_custom_css()
 
-# Initialize session state for navigation
+# Initialize session state for navigation and goals
 if 'page' not in st.session_state:
     st.session_state['page'] = 'home'
+if 'goals_set' not in st.session_state:
+    st.session_state['goals_set'] = False
 
 # Navigation function to change page
 def navigate_to(page):
@@ -66,8 +68,6 @@ def navigate_to(page):
 
 # Function to process the recorded audio data
 def process_audio(audio_data):
-    # Example: Saving audio data to a WAV file (optional, for debugging)
-    # sf.write('recorded_audio.wav', audio_data, samplerate=44100)
     st.write("Processing audio for speech-to-text...")  # Placeholder for processing
 
 # Define audio recording callback
@@ -87,9 +87,34 @@ if st.session_state['page'] == 'home':
     with col2:
         st.button("Real Presentation Coach", on_click=lambda: navigate_to('real_coach'))
 
-# AI-POWERED ANALYSIS PAGE
-elif st.session_state['page'] == 'ai':
+# AI-POWERED ANALYSIS PAGE: Set Presentation Goals (NEW)
+elif st.session_state['page'] == 'ai' and not st.session_state['goals_set']:
+    st.title('Set Your Presentation Goals')
+
+    # Goals checkboxes
+    goal_clarity = st.checkbox("Improve clarity of speech")
+    goal_engagement = st.checkbox("Increase audience engagement")
+    goal_time = st.checkbox("Stay within time limits")
+    goal_confidence = st.checkbox("Boost presentation confidence")
+
+    # Button to confirm goals and proceed
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Back to Home"):
+            navigate_to('home')  # Allows going back to home from goals page
+    with col2:
+        if st.button("Confirm Goals"):
+            st.session_state['goals_set'] = True
+            st.query_params()  # Refresh the page to go to the next step
+
+# AI-POWERED ANALYSIS PAGE: Upload Speech and Slides
+elif st.session_state['page'] == 'ai' and st.session_state['goals_set']:
     st.title('AI-Powered Presentation Analysis')
+
+    # Add a button to allow returning to the goals page
+    if st.button("Edit Presentation Goals"):
+        st.session_state['goals_set'] = False
+        st.query_params()  # Go back to goals page
 
     # Speech-to-Text Analysis
     st.header('Speech-to-Text Analysis')
@@ -101,7 +126,6 @@ elif st.session_state['page'] == 'ai':
         uploaded_audio = st.file_uploader("Upload your audio file", type=['wav'])
         if uploaded_audio is not None:
             st.audio(uploaded_audio, format='audio/wav')
-            # Process uploaded audio
             process_audio(uploaded_audio.read())  
     
     with col2:
