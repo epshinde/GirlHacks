@@ -1,10 +1,7 @@
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer, WebRtcMode
 import av  # Used for audio processing
-import numpy as np
-import soundfile as sf  # For audio file handling
 
-# Function to apply CSS styling
 def apply_custom_css():
     st.markdown(
         """
@@ -15,6 +12,7 @@ def apply_custom_css():
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            margin-top: 40px; /* Add margin for spacing */
         }
 
         /* Button styling */
@@ -26,17 +24,24 @@ def apply_custom_css():
             border-radius: 8px; /* Rounded corners */
             border: none; /* Remove default border */
             cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover */
+            display: flex; /* Use flex to center content */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
 
         /* Button hover effect */
         .stButton > button:hover {
             background-color: #5762D5; /* Darker blue on hover */
             color: #FFFFFF; /* White text on hover */
+            transform: translateY(-2px); /* Slight upward movement on hover */
         }
 
         /* Header styling */
         h1, h2, h3 {
             text-align: center; /* Center-align headers */
+            color: #4B4B4D; /* Dark gray for headers */
         }
 
         /* File uploader spacing */
@@ -44,16 +49,25 @@ def apply_custom_css():
             margin-bottom: 20px; /* Space below the instruction */
         }
 
-        /* Additional spacing for file upload instructions */
-        .stFileUploader {
-            margin-top: 10px; /* Space above the button */
+        /* Center the footer */
+        footer {
+            text-align: center;
+            margin-top: 40px; /* Add space above footer */
+            font-size: 14px; /* Smaller font for footer */
+            color: #7F8C8D; /* Gray color for footer */
+        }
+
+        /* Image in buttons */
+        .button-img {
+            width: 24px; /* Set image width */
+            height: 24px; /* Set image height */
+            margin-right: 8px; /* Space between image and text */
         }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-# Apply custom CSS
 apply_custom_css()
 
 # Initialize session state for navigation and goals
@@ -82,12 +96,23 @@ if st.session_state['page'] == 'home':
     st.write("Please choose how you'd like to proceed:")
 
     col1, col2 = st.columns(2)
-    with col1:
-        st.button("AI-Powered Analysis", on_click=lambda: navigate_to('ai'))
-    with col2:
-        st.button("Real Presentation Coach", on_click=lambda: navigate_to('real_coach'))
 
-# AI-POWERED ANALYSIS PAGE: Set Presentation Goals (NEW)
+    with col1:
+        st.markdown(
+            f'<button class="stButton" onclick="window.location.href=\'#\'">'
+            f'<img class="button-img" src="GirlHacks/ai.jpeg" />'
+            f'AI-Powered Analysis</button>',
+            unsafe_allow_html=True
+        )
+    with col2:
+        st.markdown(
+            f'<button class="stButton" onclick="window.location.href=\'#\'">'
+            f'<img class="button-img" src="ai.jpeg" />'
+            f'Real Presentation Coach</button>',
+            unsafe_allow_html=True
+        )
+
+# AI-POWERED ANALYSIS PAGE: Set Presentation Goals
 elif st.session_state['page'] == 'ai' and not st.session_state['goals_set']:
     st.title('Set Your Presentation Goals')
 
@@ -105,7 +130,7 @@ elif st.session_state['page'] == 'ai' and not st.session_state['goals_set']:
     with col2:
         if st.button("Confirm Goals"):
             st.session_state['goals_set'] = True
-            st.query_params()  # Refresh the page to go to the next step
+            navigate_to('ai')  # Move to the next step
 
 # AI-POWERED ANALYSIS PAGE: Upload Speech and Slides
 elif st.session_state['page'] == 'ai' and st.session_state['goals_set']:
@@ -114,7 +139,7 @@ elif st.session_state['page'] == 'ai' and st.session_state['goals_set']:
     # Add a button to allow returning to the goals page
     if st.button("Edit Presentation Goals"):
         st.session_state['goals_set'] = False
-        st.query_params()  # Go back to goals page
+        navigate_to('ai')  # Go back to goals page
 
     # Speech-to-Text Analysis
     st.header('Speech-to-Text Analysis')

@@ -1,0 +1,44 @@
+/* src/App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+}
+
+.stButton {
+  background-color: #6E7DAB;
+  color: #D1E3DD;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.stButton:hover {
+  background-color: #5762D5;
+  color: #FFFFFF;
+}
+
+.button-img {
+  margin-right: 10px; /* Space between image and text */
+  width: 30px; /* Adjust the size of the images */
+  height: 30px;
+}
