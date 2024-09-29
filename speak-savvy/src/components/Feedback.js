@@ -1,58 +1,28 @@
 // src/Feedback.js
 import React, { useState, useEffect } from 'react';
 import './Feedback.css'; // CSS file for general feedback styling
-import './AnalysisResults.css'; // Separate CSS file for styling
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
 const Feedback = () => {
-    const [goals, setGoals] = useState('');
-    const [clarity, setClarity] = useState('');
-    const [fillerWords, setFillerWords] = useState('');
-    const [improvement, setImprovement] = useState('');
-    const [summary, setSummary] = useState('');
+    const [feedback, setFeedback] = useState('');
     const navigate = useNavigate(); // Initialize the navigate function
 
     // Simulated fetch from backend (replace with actual fetch in a real scenario)
     useEffect(() => {
-        // Example feedback data that would typically come from your backend
-        const feedbackData = {
-            goals: "Improve presentation skills and engage the audience.",
-            clarity: "The presentation was clear, but some points could be elaborated.",
-            fillerWords: "um, uh, like",
-            improvement: "Practice speaking without filler words.",
-            summary: "Overall, a good presentation with areas for improvement."
-        };
+        // Example feedback string coming from backend
+        const feedbackString = `
+            Your presentation was well-organized but there are areas to improve. You used filler words like 'um' and 'uh' which distracted from the flow. Clarity was good, but more emphasis on engagement would be helpful. Focus on reducing filler words and consider adding more visual aids.
+        `;
 
-        // Set the feedback state variables with the data fetched from backend
-        setGoals(feedbackData.goals);
-        setClarity(feedbackData.clarity);
-        setFillerWords(feedbackData.fillerWords);
-        setImprovement(feedbackData.improvement);
-        setSummary(feedbackData.summary);
+        // Set the feedback state variable with the string fetched from the backend
+        setFeedback(feedbackString);
     }, []); // Empty dependency array means this runs once after initial render
 
     return (
         <div className="container">
             <h1>Presentation Feedback</h1>
-            <div className="section">
-                <h2>Goals</h2>
-                <p>{goals}</p> {/* Display fetched feedback data */}
-            </div>
-            <div className="section">
-                <h2>Clarity</h2>
-                <p>{clarity}</p> {/* Display fetched feedback data */}
-            </div>
-            <div className="section">
-                <h2>Filler Words</h2>
-                <p>{fillerWords}</p> {/* Display fetched feedback data */}
-            </div>
-            <div className="section">
-                <h2>Improvement</h2>
-                <p>{improvement}</p> {/* Display fetched feedback data */}
-            </div>
-            <div className="section">
-                <h2>Summary</h2>
-                <p>{summary}</p> {/* Display fetched feedback data */}
+            <div className="feedback-text">
+                <p>{feedback}</p> {/* Display the feedback string in a paragraph element */}
             </div>
             <div className="button-container">
                 <button onClick={() => navigate('/')}>Return to Home</button> {/* Navigate back to home */}
