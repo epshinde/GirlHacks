@@ -5,7 +5,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
     font-family: 'Rubik', sans-serif;
     background-color: #f9f9f9;
     padding: 20px;
@@ -24,8 +23,8 @@
 .button-container button {
     padding: 15px 30px;
     font-size: 1.2rem;
-    color: #fff;
-    background-color: #28a745;
+    color: #fff; /* Text color */
+    background-color: #fcafdb; /* Updated button background color */
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -33,5 +32,5 @@
 }
 
 .button-container button:hover {
-    background-color: #218838;
+    background-color: #fd89cb; /* Slightly darker shade for hover effect */
 }

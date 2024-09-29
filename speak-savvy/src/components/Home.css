@@ -5,7 +5,7 @@
     margin: 0 auto;
     padding: 20px;
     font-family: 'Rubik', sans-serif;
-    background-color: #ffe4f5;
+    background-color: #f4f4f4;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -24,6 +24,7 @@
 .home-page label {
     margin: 10px 0 5px;
     font-weight: 500;
+    margin-right: 10px;
 }
 
 /* Styles for individual form groups */
@@ -37,7 +38,8 @@
 }
 
 .form-group-goal textarea {
-    width: 100%; /* Full width for the goal textarea */
+    margin-top: 10px;
+    width: 95%; /* Full width for the goal textarea */
     min-height: 150px; /* Increased height for more space */
 }
 
@@ -48,6 +50,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
+    background-color: #ffdbea;
+    font-family: 'Rubik', sans-serif; /* Ensure dropdowns use the same font */
 }
 
 .home-page select:focus,

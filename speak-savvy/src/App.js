@@ -7,6 +7,8 @@ import AICoach from './components/AICoach';
 import SpeechAnalysis from './components/SpeechAnalysis';
 import SlidesToSpeech from './components/SlidesToSpeech';
 import ProfessionalCoach from './components/ProfessionalCoach';
+import Feedback from './components/Feedback'; // Import Feedback component
+
 
 const App = () => {
     return (
@@ -18,6 +20,7 @@ const App = () => {
                 <Route path="/speech-analysis" element={<SpeechAnalysis />} />
                 <Route path="/slides-to-speech" element={<SlidesToSpeech />} />
                 <Route path="/professional-coach" element={<ProfessionalCoach />} />
+                <Route path="/feedback" element={<Feedback />} /> {/* This confirms the path */}
             </Routes>
         </Router>
     );

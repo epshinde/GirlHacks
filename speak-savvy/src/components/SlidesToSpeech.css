@@ -1,40 +1,51 @@
 /* src/components/SlidesToSpeech.css */
+
 .slides-to-speech-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-family: 'Rubik', sans-serif;
+    background-color: #f9f9f9; /* Page background */
+    padding: 20px;
+    max-width: 600px; /* Limit width of the container */
+    margin: 0 auto; /* Center the container */
+    background-color: #fff; /* White background for the content box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.slides-to-speech-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
 .file-upload-section {
-    margin: 20px 0;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-label {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-input[type="file"] {
-    display: block;
-    margin-top: 10px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #fcafdb;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-button:hover {
-    background-color: #6E7DAB;
+.file-upload-section label {
+    margin-bottom: 10px;
+    display: block; /* Ensure the label is on a new line */
 }
 
 .actions {
-    margin-top: 20px;
-    text-align: center;
+    margin-bottom: 20px; /* Space before back button */
+}
+
+.actions button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #fcafdb; /* Button color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.actions button:hover {
+    background-color: #fd89cb; /* Darker shade on hover */
 }

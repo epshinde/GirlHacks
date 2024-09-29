@@ -5,7 +5,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
     font-family: 'Rubik', sans-serif;
     background-color: #f9f9f9;
     padding: 20px;
@@ -18,14 +17,14 @@
 
 .button-container {
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Adjust the gap size as needed */
 }
 
 .button-container button {
     padding: 15px 30px;
     font-size: 1.2rem;
     color: #fff;
-    background-color: #fcafdb;
+    background-color: #f0aacc; /* Change button color here if needed */
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -34,4 +33,21 @@
 
 .button-container button:hover {
     background-color: #fd89cb;
+}
+
+/* Style for the BackButton */
+.back-button {
+    margin-top: 20px; /* Space between buttons and back button */
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff; /* Change text color */
+    background-color: #007bff; /* Change background color for the back button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Darker shade for hover */
 }

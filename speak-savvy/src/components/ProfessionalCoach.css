@@ -3,7 +3,6 @@
 .professional-coach-container {
     padding: 20px;
     background-color: #f9f9f9; /* Light background color */
-    min-height: 100vh; /* Ensure it takes up full height */
 }
 
 .coaches-list {
