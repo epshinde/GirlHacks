@@ -1,6 +1,7 @@
 // src/components/Home.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from './BackButton'; // Import the BackButton component
 import './Home.css'; // Import CSS file for styling
 
 const Home = () => {
@@ -21,7 +22,7 @@ const Home = () => {
     };
 
     return (
-        <div className="home-page">
+        <div className="home">
             <h1>Presentation Goals</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group-audience">
@@ -78,6 +79,8 @@ const Home = () => {
                 </div>
 
                 <button type="submit">Continue</button>
+                {/* Add the BackButton component */}
+                <BackButton to="/" />
             </form>
         </div>
     );
