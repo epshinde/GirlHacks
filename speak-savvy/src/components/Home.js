@@ -1,24 +1,23 @@
 // src/components/Home.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css'; // Import CSS file for styling
+import './Home.css';
 import BackButton from './BackButton';
 
 const Home = () => {
     const navigate = useNavigate();
     
-    // State variables for the form inputs
     const [audience, setAudience] = useState('');
     const [domain, setDomain] = useState('');
     const [intent, setIntent] = useState('');
     const [engagement, setEngagement] = useState('');
     const [goal, setGoal] = useState('');
 
-    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can store or send the data as needed here
-        navigate('/select-coach'); // Navigate to the SelectCoach page
+        const preferences = {audience: audience, domain: domain, intent: intent, engagement: engagement, goal: goal};
+        localStorage.setItem('presentationPreferences', JSON.stringify(preferences));
+        navigate('/select-coach');
     };
 
     return (
@@ -80,7 +79,7 @@ const Home = () => {
 
                 <button type="submit">Continue</button>
             </form>
-            <BackButton to="/startPage" /> {/* Use your BackButton here */}
+            <BackButton to="/startPage" />
         </div>
     );
 };

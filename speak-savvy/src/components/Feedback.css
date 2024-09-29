@@ -24,13 +24,19 @@ h1 {
     overflow-wrap: break-word;
     max-width: 100%; /* Ensure the feedback box stays within the container */
     box-sizing: border-box; /* Ensure padding is included in the width */
+    max-height: 400px; /* Adjust this value as necessary */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .feedback-text p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin: 0; /* Ensure no extra margin in paragraph */
+    white-space: pre-wrap; /* Allows wrapping within <pre> tag */
+    word-wrap: break-word; /* Ensures long words wrap */
+    overflow-wrap: break-word; /* Ensures proper wrapping */
+    font-size: 1rem; /* Optional: you can adjust the font-size if needed */
+    line-height: 1.6; /* Optional: adjust line height for readability */
+    margin: 0;
 }
+
 
 .button-container {
     display: flex;

@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Recorder from 'recorder-js';
-import WaveSurfer from 'wavesurfer.js';
 import './SpeechAnalysis.css';
 import BackButton from './BackButton';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SpeechAnalysis = () => {
     const navigate = useNavigate();
+    const [audioFile, setAudioFile] = useState(null);
     const [recorder, setRecorder] = useState(null);
     const [recording, setRecording] = useState(false);
     const [audioBlob, setAudioBlob] = useState(null);
-    const [waveform, setWaveform] = useState(null);
-    const wavesurferRef = useRef(null);
-    const [audioURL, setAudioURL] = useState('');
-    const [uploadMode, setUploadMode] = useState(false); // Track if in upload mode
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleFileUpload = (e) => {
+        setAudioFile(e.target.files[0]);
+    };
 
     const startRecording = async () => {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -28,106 +30,92 @@ const SpeechAnalysis = () => {
     const stopRecording = async () => {
         const { blob } = await recorder.stop();
         setAudioBlob(blob);
-        setAudioURL(URL.createObjectURL(blob)); // Create URL for waveform
         setRecording(false);
     };
 
     const playAudio = () => {
-        if (audioURL) {
+        if (audioBlob) {
+            const audioURL = URL.createObjectURL(audioBlob);
             const audio = new Audio(audioURL);
             audio.play();
         }
     };
 
-    const handleSubmit = () => {
-        // Add logic to send audioBlob to backend if needed
-        navigate('/feedback'); // Navigate to Feedback page
-    };
-
-    const handleFileUpload = (event) => {
-        const file = event.target.files[0];
-        if (file && file.type === 'audio/wav') {
-            const fileURL = URL.createObjectURL(file);
-            setAudioURL(fileURL);
-            setAudioBlob(file); // Set the uploaded file as audioBlob
-
-            // If you want to clear any existing waveform, you can do so here
-            if (waveform) {
-                waveform.destroy(); // Cleanup existing waveform if any
-            }
+    const handleSubmit = async () => {
+        setIsLoading(true);
+        const formData = new FormData();
+        
+        if (audioFile) {
+            formData.append('audio', audioFile);
+        } else if (audioBlob) {
+            formData.append('audio', audioBlob, 'recorded_audio.wav');
         } else {
-            alert('Please upload a valid WAV file.');
+            alert('Please upload or record an audio file first.');
+            setIsLoading(false);
+            return;
+        }
+
+        formData.append("audience", JSON.parse(localStorage.getItem("presentationPreferences")).audience);
+        formData.append("domain", JSON.parse(localStorage.getItem("presentationPreferences")).domain);
+        formData.append("intent", JSON.parse(localStorage.getItem("presentationPreferences")).intent);
+        formData.append("engagement", JSON.parse(localStorage.getItem("presentationPreferences")).engagement);
+        formData.append("goal", JSON.parse(localStorage.getItem("presentationPreferences")).goal);
+
+        localStorage.removeItem("presentationPreferences");
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/analyze-speech', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            
+            // Assuming the backend returns the analysis result
+            const analysisResult = response.data.feedback;
+            
+            // Store the result in localStorage
+            localStorage.setItem('speechAnalysisResult', JSON.stringify(analysisResult));
+            formData.delete('audio');
+            
+            // Navigate to the feedback page
+            navigate('/feedback');
+        } catch (error) {
+            console.error('Error submitting audio for analysis:', error);
+            alert('An error occurred while analyzing the speech. Please try again.');
+        } finally {
+            setIsLoading(false);
         }
     };
-
-    useEffect(() => {
-        if (audioURL && wavesurferRef.current) {
-            const ws = WaveSurfer.create({
-                container: wavesurferRef.current,
-                waveColor: 'orange', // Change this color as desired
-                progressColor: 'purple',
-                responsive: true,
-            });
-            ws.load(audioURL);
-            setWaveform(ws);
-
-            return () => ws.destroy(); // Cleanup
-        }
-    }, [audioURL]);
 
     return (
         <div className="speech-analysis-container">
+            <BackButton to="/ai-coach" />
             <h1>Speech Analysis</h1>
-
-            <div className="mode-selection">
-                <button 
-                    className={`mode-button ${!uploadMode ? 'active' : ''}`} 
-                    onClick={() => setUploadMode(false)}>
-                    Record Speech
-                </button>
-                <button 
-                    className={`mode-button ${uploadMode ? 'active' : ''}`} 
-                    onClick={() => setUploadMode(true)}>
-                    Upload WAV File
-                </button>
+            <div className="file-upload-section">
+                <label htmlFor="audioUpload">Upload a WAV File:</label>
+                <input 
+                    type="file" 
+                    id="audioUpload" 
+                    accept=".wav" 
+                    onChange={handleFileUpload} 
+                />
             </div>
 
-            {uploadMode ? (
-                <div className="file-upload-container">
-                    <input 
-                        id="file-upload" 
-                        type="file" 
-                        accept=".wav" 
-                        onChange={handleFileUpload} 
-                        style={{ display: 'none' }} // Hide default file input
-                    />
-                    <label htmlFor="file-upload" className="file-upload-button">
-                        Upload WAV File
-                    </label>
-                </div>
-            ) : (
-                <div>
-                    <div className="waveform" ref={wavesurferRef} />
-                    <div className="controls">
-                        <button onClick={startRecording} disabled={recording}>
-                            🎤 {/* Symbol for start recording */}
-                        </button>
-                        <button onClick={stopRecording} disabled={!recording}>
-                            ⏹️ {/* Symbol for stop recording */}
-                        </button>
-                        <button onClick={playAudio} disabled={!audioBlob}>
-                            ▶️ {/* Symbol for play */}
-                        </button>
-                    </div>
-                </div>
-            )}
+            <div className="audio-record-section">
+                <h2>Or Record Audio:</h2>
+                {!recording ? (
+                    <button onClick={startRecording}>Start Recording</button>
+                ) : (
+                    <button onClick={stopRecording}>Stop Recording</button>
+                )}
+                {audioBlob && <button onClick={playAudio}>Play Recording</button>}
+            </div>
 
             <div className="button-container">
-                <button onClick={handleSubmit} className="submit-button">
-                    Submit for Analysis
+                <button onClick={handleSubmit} disabled={isLoading}>
+                    {isLoading ? 'Analyzing...' : 'Submit for Analysis'}
                 </button>
             </div>
-            <BackButton to="/ai-coach" />
         </div>
     );
 };
