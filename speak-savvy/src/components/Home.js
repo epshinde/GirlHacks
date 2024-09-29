@@ -1,8 +1,8 @@
 // src/components/Home.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BackButton from './BackButton'; // Import the BackButton component
 import './Home.css'; // Import CSS file for styling
+import BackButton from './BackButton';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ const Home = () => {
     };
 
     return (
-        <div className="home">
+        <div className="home-page">
             <h1>Presentation Goals</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group-audience">
@@ -79,9 +79,8 @@ const Home = () => {
                 </div>
 
                 <button type="submit">Continue</button>
-                {/* Add the BackButton component */}
-                <BackButton to="/" />
             </form>
+            <BackButton to="/startPage" /> {/* Use your BackButton here */}
         </div>
     );
 };

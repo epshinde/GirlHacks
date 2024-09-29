@@ -1,9 +1,9 @@
 /* src/components/Home.css */
 
 .home-page {
-    max-width: 600px;
+    max-width: 550px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 18px;
     font-family: 'Rubik', sans-serif;
     background-color: #f4f4f4;
     border-radius: 10px;

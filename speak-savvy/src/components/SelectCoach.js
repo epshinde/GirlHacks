@@ -18,7 +18,7 @@ const SelectCoach = () => {
                     AI Coach
                 </button>
             </div>
-            <BackButton to="/" /> {/* Move the back button here */}
+            <BackButton to="/home" /> {/* Move the back button here */}
         </div>
     );
 };

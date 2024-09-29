@@ -21,6 +21,7 @@ const App = () => {
                 <Route path="/slides-to-speech" element={<SlidesToSpeech />} />
                 <Route path="/professional-coach" element={<ProfessionalCoach />} />
                 <Route path="/feedback" element={<Feedback />} />
+                <Route path="/startPage" element={<StartPage />} />
             </Routes>
         </Router>
     );
