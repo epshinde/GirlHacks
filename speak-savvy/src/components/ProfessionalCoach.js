@@ -1,6 +1,7 @@
 // src/components/ProfessionalCoach.js
 import React, { useState } from 'react';
 import BackButton from './BackButton';
+import './ProfessionalCoach.css'; // Import CSS for styling
 
 const coaches = [
     { id: 1, name: 'Coach A', email: 'coachA@example.com' },
@@ -9,34 +10,43 @@ const coaches = [
 ];
 
 const ProfessionalCoach = () => {
-    const [selectedCoach, setSelectedCoach] = useState(null);
+    const [currentCoachIndex, setCurrentCoachIndex] = useState(0);
     const [message, setMessage] = useState('');
 
-    const handleSendMessage = (coach) => {
-        // Here you would implement the logic to send a message
-        // For now, let's just log the message to the console
+    const handleSendMessage = () => {
+        const coach = coaches[currentCoachIndex];
         console.log(`Message sent to ${coach.name}: ${message}`);
         setMessage(''); // Clear the message field after sending
     };
 
+    const nextCoach = () => {
+        setCurrentCoachIndex((prevIndex) => (prevIndex + 1) % coaches.length);
+    };
+
+    const prevCoach = () => {
+        setCurrentCoachIndex((prevIndex) => (prevIndex - 1 + coaches.length) % coaches.length);
+    };
+
+    const currentCoach = coaches[currentCoachIndex]; // Get current coach
+
     return (
         <div className="professional-coach-container">
-            <BackButton to="/select-coach" /> {/* Navigate back to select coach page */}
             <h1>Select a Professional Coach</h1>
-            <div className="coaches-list">
-                {coaches.map((coach) => (
-                    <div key={coach.id} className="coach-card">
-                        <h2>{coach.name}</h2>
-                        <p>Email: {coach.email}</p>
-                        <textarea
-                            placeholder="Write your message here..."
-                            value={selectedCoach === coach.id ? message : ''}
-                            onChange={(e) => setMessage(e.target.value)}
-                        />
-                        <button onClick={() => handleSendMessage(coach)}>Send Message</button>
-                    </div>
-                ))}
+            <div className="coach-card">
+                <h2>{currentCoach.name}</h2>
+                <p>Email: {currentCoach.email}</p>
+                <textarea
+                    placeholder="Write your message here..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                />
+                <div className="button-container">
+                    <button onClick={handleSendMessage}>Send Message</button>
+                    <button onClick={prevCoach} disabled={coaches.length <= 1}>Previous</button>
+                    <button onClick={nextCoach} disabled={coaches.length <= 1}>Next</button>
+                </div>
             </div>
+            <BackButton to="/select-coach" /> {/* Move BackButton to the bottom */}
         </div>
     );
 };
